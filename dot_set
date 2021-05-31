@@ -1,0 +1,29 @@
+#!/bin/sh
+
+if [ -z "$1" ]; then
+    echo "You must specify a mode"
+
+else
+    if [ -z "$2" ]; then
+        echo "You must specify a theme name"
+    else
+        case $1 in
+            "backup")
+                cp ~/dot_set ~/dotfiles/dot_set
+                cp -r ~/.config/awesome ~/dotfiles/$2/
+                cp -r ~/.config/picom ~/dotfiles/$2/
+                cp -r ~/.local/share/konsole ~/dotfiles/$2/
+                cp ~/.xinitrc ~/dotfiles/$2/
+                cp -r ~/.zshrc ~/dotfiles/$2/
+                ;;
+
+            "restore")
+                cp -r ~/dotfiles/$2/awesome ~/.config/
+                cp -r ~/dotfiles/$2/picom ~/.config/
+                cp -r ~/dotfiles/$2/konsole ~/.local/share
+                cp ~/dotfiles/$2/.xinitrc ~/.xinitrc 
+                cp ~/dotfiles/$2/.zshrc ~/.zshrc 
+                ;;
+        esac
+    fi
+fi

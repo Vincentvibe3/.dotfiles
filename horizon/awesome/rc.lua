@@ -373,9 +373,18 @@ clientkeys = gears.table.join(
             c:raise()
         end ,
         {description = "(un)maximize horizontally", group = "client"}),
+    
+    --toggle title bar
     awful.key({ modkey, 'Control' }, 't',
-  	awful.titlebar.toggle,
-	{description = 'toggle title bar', group = 'client'})
+  	    awful.titlebar.toggle,
+	    {description = 'toggle title bar', group = 'client'}),
+    
+    --take a screenshot with scrot
+    awful.key({ modkey, "Shift"   }, "s", 
+        function () 
+            awful.spawn.with_shell("scrot -e 'mv $f ~/screenshots'") 
+        end,
+        {description = "Screenshot with scrot", group = "screen"})
 
 )
 
@@ -452,7 +461,7 @@ root.keys(globalkeys)
 awful.rules.rules = {
     -- All clients will match this rule.
     { rule = { },
-      except_any = { class = "feh" },
+      except_any = { class = { "feh" }},
       properties = { border_width = beautiful.border_width,
                      border_color = beautiful.border_normal,
                      focus = awful.client.focus.filter,
@@ -464,8 +473,15 @@ awful.rules.rules = {
      }
     },
     
-    { rule = { class = "feh" },
-      properties = { border_width = 5 }
+    { rule_any = { class = { "feh" }},
+      properties = { border_width = 5,
+      border_color = beautiful.border_normal,
+      focus = awful.client.focus.filter,
+      raise = true,
+      keys = clientkeys,
+      buttons = clientbuttons,
+      screen = awful.screen.preferred,
+      placement = awful.placement.no_overlap+awful.placement.no_offscreen }
     },
 
     -- Floating clients.
@@ -501,7 +517,7 @@ awful.rules.rules = {
 
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" } },
-    	except_any = { class = {"firefox", "feh"} },
+    	except_any = { class = {"firefox", "feh", "Ulauncher"} },
     	properties = { titlebars_enabled = true },
     },
 
