@@ -12,7 +12,7 @@ cd Downloads
 aur_install() {
     git clone "$1"
     cd "$(basename "$1" .git)"
-    makepkg -si --needed --noconfirm
+    sudo -u vincent makepkg -si --needed --noconfirm
 }
 
 pacman_install() {
