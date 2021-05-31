@@ -1,0 +1,137 @@
+#!/bin/bash
+
+if [ "$EUID" -ne 0 ]
+    then echo "This script must be run as root"
+    exit
+fi
+
+# prepare installation process
+mkdir Downloads
+cd Downloads
+
+aur_install() {
+    git clone "$1"
+    cd "$(basename "$1" .git)"
+    makepkg -si --needed --noconfirm
+}
+
+pacman_install() {
+    pacman -S --needed --noconfirm "$1"
+}
+
+# utilities(CLI)
+pacman_install git
+pacman_install neovim
+pacman_install progress
+pacman_install curl
+pacman_install wget
+pacman_install zip
+pacman_install unzip
+pacman_install neofetch
+pacman_install base-devel
+pacman_install net-tools
+pacman_install gpart
+
+# shell
+pacman_install zsh
+
+# X stuff
+pacman_install xorg
+pacman_install xorg-xinit
+
+# desktop environment
+echo
+while true; do
+    read -p "Install KDE? (y/n)" DE_INSTALL 
+    case $DE_INSTALL in
+        [Yy]* )
+            pacman_install plasma;
+            break
+        ;;
+
+        [Nn]* ) 
+            break
+        ;;
+
+        "")
+            pacman_install plasma;
+            break
+        ;;
+
+        *)
+            echo "Enter a valid choice";
+            echo
+        ;;
+    esac
+done
+
+# audio management
+pacman_install alsa-utils
+pacman_install pulse-audio
+pacman_install pavucontrol
+
+# window manager
+pacman_install awesome
+
+# terminal emulator
+pacman_install konsole
+
+# file manager 
+pacman_install dolphin
+
+# browser
+pacman_install firefox
+
+# Utilities(with x)
+pacman_install bpytop
+pacman_install feh
+pacman_install scrot
+pacman_install mesa-demos
+aur_install https://aur.archlinux.org/ulauncher.git
+
+# fonts
+pacman -S --noconfirm noto-fonts noto-fonts-emoji noto-fonts-cjk noto-fonts-extra
+aur_install https://aur.archlinux.org/montserrat-font.git
+aur_install https://aur.archlinux.org/montserrat-font.git
+aur_install https://aur.archlinux.org/nerd-fonts-cascadia-code.git
+aur_install https://aur.archlinux.org/picom-ibhagwan-git.git
+
+# code editor
+aur_install https://aur.archlinux.org/visual-studio-code-bin.git
+
+# social
+pacman_install discord
+
+# music
+aur_install https://aur.archlinux.org/spotify.git
+
+# set up process
+
+# set up audio
+amixer sset Master unmute
+amixer sset Speaker unmute
+amixer sset Headphone unmute
+amixer sset Master 100%
+amixer sset Speaker 100%
+amixer sset Headphone 100%
+
+# set up shell
+chsh -s /usr/bin/zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# set up dot files
+git config --global credential.helper store
+read -p "Enter your name for git:" GIT_NAME
+git config --global user.name "$GIT_NAME"
+read -p "Enter your email for git" GIT_EMAIL
+git config --global user.email "$GIT_EMAIL"
+git config --global core.email "nvim"
+
+cd ~
+git clone https://github.com/Vincentvibe3/dot-files dotfiles
+cp ./dotfiles/dot_set ~
+chmod +x dot_set
+read -p "What theme should be restored?" THEME
+./dot_set restore "$THEME"
+
+rm -r Downloads
