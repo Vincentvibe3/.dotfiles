@@ -12,11 +12,11 @@ cd Downloads
 aur_install() {
     git clone "$1"
     cd "$(basename "$1" .git)"
-    sudo -u vincent makepkg -si --needed --noconfirm
+    makepkg -si --needed --noconfirm
 }
 
 pacman_install() {
-    pacman -S --needed --noconfirm "$1"
+    sudo pacman -S --needed --noconfirm "$1"
 }
 
 # utilities(CLI)
