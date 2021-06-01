@@ -1,5 +1,10 @@
 #!/bin/sh
 
+mkdir -p ~/dotfiles
+mkdir -p ~/.config/awesome
+mkdir -p ~/.config/picom
+mkdir -p ~/.local/share/konsole
+
 if [ -z "$1" ]; then
     echo "You must specify a mode"
 
