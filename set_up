@@ -129,4 +129,4 @@ chmod +x dot_set
 read -p "What theme should be restored?" THEME
 ./dot_set restore "$THEME"
 
-rm -r temp_downloads
+sudo rm -r temp_downloads
