@@ -129,4 +129,6 @@ chmod +x dot_set
 read -p "What theme should be restored?" THEME
 ./dot_set restore "$THEME"
 
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
 sudo rm -r temp_downloads
