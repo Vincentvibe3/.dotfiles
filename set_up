@@ -1,13 +1,8 @@
 #!/bin/bash
 
-if [ "$EUID" -ne 0 ]
-    then echo "This script must be run as root"
-    exit
-fi
-
 # prepare installation process
-mkdir Downloads
-cd Downloads
+mkdir temp_downloads
+cd temp_downloads
 
 aur_install() {
     git clone "$1"
@@ -116,7 +111,7 @@ amixer sset Speaker 100%
 amixer sset Headphone 100%
 
 # set up shell
-chsh -s /usr/bin/zsh
+sudo chsh -s /usr/bin/zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # set up dot files
@@ -134,4 +129,4 @@ chmod +x dot_set
 read -p "What theme should be restored?" THEME
 ./dot_set restore "$THEME"
 
-rm -r Downloads
+rm -r temp_downloads
