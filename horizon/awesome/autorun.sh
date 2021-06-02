@@ -8,3 +8,4 @@ function run {
 }
 run VBoxClient-all
 run picom -b --config ~/.config/picom/picom.conf
+run ulauncher --hide-window

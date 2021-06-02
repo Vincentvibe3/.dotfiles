@@ -99,3 +99,4 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+eval "$(oh-my-posh --init --shell zsh --config ~/.poshthemes/mythemes/horizon.omp.json)"

@@ -1,10 +1,5 @@
 #!/bin/sh
 
-mkdir -p ~/dotfiles
-mkdir -p ~/.config/awesome
-mkdir -p ~/.config/picom
-mkdir -p ~/.local/share/konsole
-
 if [ -z "$1" ]; then
     echo "You must specify a mode"
 
@@ -19,7 +14,8 @@ else
                 cp -r ~/.config/picom ~/dotfiles/$2/
                 cp -r ~/.local/share/konsole ~/dotfiles/$2/
                 cp ~/.xinitrc ~/dotfiles/$2/
-                cp -r ~/.zshrc ~/dotfiles/$2/
+                cp ~/.zshrc ~/dotfiles/$2/
+                cp -r ~/.poshthemes/mythemes/ ~/dotfiles/$2/poshthemes/
                 ;;
 
             "restore")
@@ -28,6 +24,7 @@ else
                 cp -r ~/dotfiles/$2/konsole ~/.local/share
                 cp ~/dotfiles/$2/.xinitrc ~/.xinitrc 
                 cp ~/dotfiles/$2/.zshrc ~/.zshrc 
+                cp -r ~/dotfiles/$2/poshthemes/* ~/.poshthemes/mythemes
                 ;;
         esac
     fi
