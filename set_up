@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # prepare installation process
-mkdir temp_downloads
+mkdir -p temp_downloads
 cd temp_downloads
 
 aur_install() {
