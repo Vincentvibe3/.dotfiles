@@ -26,6 +26,7 @@ pacman_install neofetch
 pacman_install base-devel
 pacman_install net-tools
 pacman_install gpart
+pacman_install gnupg
 
 # shell
 pacman_install zsh
@@ -98,6 +99,7 @@ aur_install https://aur.archlinux.org/visual-studio-code-bin.git
 pacman_install discord
 
 # music
+curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | gpg --import -
 aur_install https://aur.archlinux.org/spotify.git
 
 # set up process
