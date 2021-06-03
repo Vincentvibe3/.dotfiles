@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # prepare installation process
-mkdir -p temp_downloads
-cd temp_downloads
+mkdir -p ~/temp_downloads
+cd ~/temp_downloads
 
 aur_install() {
     git clone "$1"
@@ -167,4 +167,4 @@ done
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-sudo rm -r temp_downloads
+sudo rm -r ~/temp_downloads
