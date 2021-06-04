@@ -135,7 +135,7 @@
         {
           "type": "text",
           "style": "plain",
-          "foreground": "yellow",
+          "foreground": "lightYellow",
           "properties": {
               "prefix": "",
               "text": " \u279C"
