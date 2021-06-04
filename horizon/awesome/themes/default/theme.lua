@@ -16,7 +16,7 @@ theme.font          = "Montserrat Medium 8"
 theme.bg_normal     = "#1C1E26"
 theme.bg_focus      = "#B75170"
 theme.bg_urgent     = "#ff0000"
-theme.bg_minimize   = "#545A72"
+theme.bg_minimize   = "#B75170"
 theme.bg_systray    = theme.bg_normal
 
 theme.fg_normal     = "#fafafa"
@@ -34,6 +34,9 @@ theme.titlebar_bg_normal = "#1C1E26"
 theme.titlebar_bg_focus = "#1C1E26"
 theme.titlebar_height = 30
 
+theme.hotkeys_fg = "#ffffff"
+
+theme.tasklist_bg_minimize = "1C1E26"
 -- There are other variable sets
 -- overriding the default one when
 -- defined, the sets are:
@@ -73,6 +76,8 @@ theme.menu_width  = dpi(150)
 -- you wish and access them by using
 -- beautiful.variable in your rc.lua
 --theme.bg_widget = "#cc0000"
+
+theme.wibar_height = dpi(25)
 
 -- Define the image to load
 theme.titlebar_close_button_normal = themes_path.."default/titlebar/close_normal.png"

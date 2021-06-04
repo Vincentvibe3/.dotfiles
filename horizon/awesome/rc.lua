@@ -178,7 +178,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    awful.tag({ "1", "2", "3", "4" }, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -190,6 +190,7 @@ awful.screen.connect_for_each_screen(function(s)
                            awful.button({ }, 3, function () awful.layout.inc(-1) end),
                            awful.button({ }, 4, function () awful.layout.inc( 1) end),
                            awful.button({ }, 5, function () awful.layout.inc(-1) end)))
+
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist {
         screen  = s,
@@ -201,28 +202,86 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytasklist = awful.widget.tasklist {
         screen  = s,
         filter  = awful.widget.tasklist.filter.currenttags,
-        buttons = tasklist_buttons
+        buttons = tasklist_buttons,
+        widget_template = {
+            {
+                wibox.widget.base.make_widget(),
+                forced_height = 2,
+                id            = 'background_role',
+                widget        = wibox.container.background,
+            },
+            {
+                {
+                    {
+                        id     = 'icon_role',
+                        widget = wibox.widget.imagebox,
+                    },
+                    
+                    margins = 4,
+                    widget  = wibox.container.margin
+                },
+                {
+                    id = 'text_role',
+                    widget = wibox.widget.textbox,
+                },
+                layout = wibox.layout.fixed.horizontal,
+            },
+            layout = wibox.layout.align.vertical,
+        },
     }
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s })
+    s.mywiboxleft = wibox({ ontop = true, y = beautiful.useless_gap, x = beautiful.useless_gap, screen = s, width = beautiful.wibar_height, height = beautiful.wibar_height, visible = true })
+    s.mywiboxleft:struts({ top = beautiful.wibar_height+beautiful.useless_gap })
+
+    s.mywiboxright = wibox({ ontop = true, y = beautiful.useless_gap, x = beautiful.useless_gap*2+beautiful.wibar_height, screen = s, width = (s.workarea["width"]-beautiful.useless_gap*3)-beautiful.wibar_height, height = beautiful.wibar_height, visible = true })
+    s.mywiboxright:struts({ top = beautiful.wibar_height+beautiful.useless_gap })
 
     -- Add widgets to the wibox
-    s.mywibox:setup {
+    s.mywiboxleft:setup {
         layout = wibox.layout.align.horizontal,
-        { -- Left widgets
-            layout = wibox.layout.fixed.horizontal,
-            mylauncher,
+        mylauncher,
+    }
+
+    s.mywiboxright:setup {
+        layout = wibox.layout.align.horizontal,
+        {
             s.mytaglist,
-            s.mypromptbox,
+            {
+                s.mypromptbox,
+                left = 5,
+                right = 5,
+                layout = wibox.container.margin
+            },
+            layout = wibox.layout.align.horizontal
         },
-        s.mytasklist, -- Middle widget
+        {
+            expand = 'none',
+            {
+                align = 'center',
+                s.mytasklist, -- Middle widget
+                layout = wibox.container.place
+            },
+            layout = wibox.layout.flex.horizontal
+        },
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
-            s.mylayoutbox,
+            {
+                {
+                    s.mylayoutbox,
+                    margins = 5,
+                    layout  = wibox.container.margin,
+
+                },
+                visible = true,
+                forced_height = beautiful.wibar_height,
+                forced_width = beautiful.wibar_height,
+                bg = beautiful.bg_focus,
+                widget = wibox.container.background,
+            },
         },
     }
 end)
