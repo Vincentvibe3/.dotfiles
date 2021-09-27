@@ -1,0 +1,23 @@
+OUTPUT=$(basename $1)
+gpg -o "$OUTPUT.tar.gz" --decrypt $1
+echo  "Keep encrypted file (y/n)?"                         read CHOICE
+echo "Keep tar archive (y/n)?"
+read CHOICE_2
+tar -xzvf "$OUTPUT.tar.gz"
+
+case $CHOICE in
+	n)
+		rm $1
+		;;
+esac
+
+case $CHOICE_2 in
+	n) 
+		rm "$OUTPUT.tar.gz"
+		;;
+	y)
+		REFORMAT1=$(basename $1 .gpg)
+		REFORMAT2=$(basename $REFORMAT1 .tar.gz)
+		mv "$OUTPUT.tar.gz" "$REFORMAT2.tar.gz"
+		;;
+esac

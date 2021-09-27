@@ -1,0 +1,34 @@
+if test -e exportedkey; then
+	CHECKCOUNT=1
+	while test -e exportedkey; do
+		if test -e exportedkey$CHECKCOUNT;then
+			CHECKCOUNT=$CHECKCOUNT+1
+		else
+			mv exportedkey exportedkey$CHECKCOUNT
+		fi
+	done
+fi
+
+gpg -o importedkey.tar.gz --decrypt $1
+tar -xzf importedkey.tar.gz
+cd exportedkey
+
+if test -e key; then
+	gpg --import key
+fi
+
+if test -e secret; then
+	gpg --import secret
+fi
+
+if test -e trust; then
+	gpg --import-ownertrust trust
+fi
+
+cd ../
+rm -r exportedkey
+rm importedkey.tar.gz
+if test -e exportedkey$CHECKCOUNT; then
+	mv exportedkey$CHECKCOUNT exportedkey
+fi
+

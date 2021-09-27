@@ -1,0 +1,19 @@
+
+if [[ "$1" = "-c" ]]; then
+    file=$(basename $2)
+    name="${file%.*}"
+    ecj -d temp ${2}
+    dx --dex --output "$name.dex" "temp"
+    rm -r temp
+elif [[ "$1" = "-r" ]]; then
+    dalvikvm -cp ${2} ${3}
+elif [[ "$1" = "-rc" ]]; then
+    file=$2
+    name=${file%.*}
+    ecj -d temp ${2}
+    dx --dex --output "$name.dex" "temp"
+    rm -r temp
+    dalvikvm -cp "$name.dex" ${3}
+    rm "$name.dex"
+fi
+unset file name
