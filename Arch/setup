@@ -1,0 +1,170 @@
+#!/bin/bash
+
+# prepare installation process
+mkdir -p ~/temp_downloads
+cd ~/temp_downloads
+
+aur_install() {
+    git clone "$1"
+    cd "$(basename "$1" .git)"
+    makepkg -si --needed --noconfirm
+}
+
+pacman_install() {
+    sudo pacman -S --needed --noconfirm "$1"
+}
+
+# utilities(CLI)
+pacman_install git
+pacman_install neovim
+pacman_install progress
+pacman_install curl
+pacman_install wget
+pacman_install zip
+pacman_install unzip
+pacman_install neofetch
+pacman_install base-devel
+pacman_install net-tools
+pacman_install gpart
+pacman_install gnupg
+
+# shell
+pacman_install zsh
+
+# X stuff
+pacman_install xorg
+pacman_install xorg-xinit
+
+# desktop environment
+echo
+while true; do
+    read -p "Install KDE? (y/n)" DE_INSTALL 
+    case $DE_INSTALL in
+        [Yy]* )
+            pacman_install plasma;
+            break
+        ;;
+
+        [Nn]* ) 
+            break
+        ;;
+
+        "")
+            pacman_install plasma;
+            break
+        ;;
+
+        *)
+            echo "Enter a valid choice";
+            echo
+        ;;
+    esac
+done
+
+# audio management
+pacman_install alsa-utils
+pacman_install pulse-audio
+pacman_install pavucontrol
+
+# window manager
+pacman_install awesome
+
+# terminal emulator
+pacman_install konsole
+
+# file manager 
+pacman_install dolphin
+
+# browser
+pacman_install firefox
+
+# Utilities(with x)
+pacman_install bpytop
+pacman_install feh
+pacman_install scrot
+pacman_install mesa-demos
+aur_install https://aur.archlinux.org/ulauncher.git
+
+# fonts
+pacman -S --noconfirm noto-fonts noto-fonts-emoji noto-fonts-cjk noto-fonts-extra
+aur_install https://aur.archlinux.org/montserrat-font.git
+aur_install https://aur.archlinux.org/montserrat-font.git
+aur_install https://aur.archlinux.org/nerd-fonts-cascadia-code.git
+aur_install https://aur.archlinux.org/picom-ibhagwan-git.git
+
+# code editor
+aur_install https://aur.archlinux.org/visual-studio-code-bin.git
+
+# social
+pacman_install discord
+
+# music
+curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | gpg --import -
+aur_install https://aur.archlinux.org/spotify.git
+
+# oh my posh
+sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
+sudo chmod +x /usr/local/bin/oh-my-posh
+mkdir -p ~/.poshthemes
+wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip -O ~/.poshthemes/themes.zip
+unzip ~/.poshthemes/themes.zip -d ~/.poshthemes
+chmod u+rw ~/.poshthemes/*.json
+rm ~/.poshthemes/themes.zip
+mkdir -p ~/.poshthemes/mythemes
+
+# set up process
+
+# set up audio
+amixer sset Master unmute
+amixer sset Speaker unmute
+amixer sset Headphone unmute
+amixer sset Master 100%
+amixer sset Speaker 100%
+amixer sset Headphone 100%
+
+# set up shell
+chsh -s /usr/bin/zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# set up dot files
+git config --global credential.helper store
+read -p "Enter your name for git: " GIT_NAME
+git config --global user.name "$GIT_NAME"
+read -p "Enter your email for git: " GIT_EMAIL
+git config --global user.email "$GIT_EMAIL"
+git config --global core.email "nvim"
+
+cd ~
+git clone https://github.com/Vincentvibe3/dot-files dotfiles
+cp ./dotfiles/backup ~
+chmod +x backup
+echo
+while true; do
+    read -p "restore dotfiles?(y/n)" RESTORE
+    case $RESTORE in
+        [Yy]* )
+            read -p "What theme should be restored?" THEME
+            ./backup restore "$THEME"
+            break
+        ;;
+
+        [Nn]* ) 
+            break
+        ;;
+
+        "")
+            read -p "What theme should be restored?" THEME
+            ./backup restore "$THEME"
+            break
+        ;;
+
+        *)
+            echo "Enter a valid choice";
+            echo
+        ;;
+    esac
+done
+
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+sudo rm -r ~/temp_downloads
