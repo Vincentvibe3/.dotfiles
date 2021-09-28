@@ -1,0 +1,31 @@
+pkg install neovim -y
+pkg install git -y
+pkg install python3 -y
+pkg install zsh -y 
+pkg install openjdk-17 -y
+pkg install kotlin -y
+pkg install gnupg -y
+pkg install zip -y
+pkg install unzip -y
+pkg install ffmpeg -y
+pkg install postgresql -y
+pkg install proot -y
+pkg install proot-distro -y
+pkg install nodejs-lts -y
+pkg install neofetch -y
+pkg install ncurses -y
+pkg install gzip -y
+pkg install tar -y
+pkg install dos2unix -y
+pkg install curl -y
+pkg install wget -y
+pkg install sed -y
+pkg install grep -y
+proot-distro install archlinux
+pip install youtube-dl
+cd ~
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+git clone https://github.com/Vincentvibe3/dotfiles.git ~/dotfiles
+chmod +x ~/dotfiles/termux/backup
+~/dotfiles/termux/backup restore
