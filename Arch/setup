@@ -136,7 +136,7 @@ git config --global core.email "nvim"
 
 cd ~
 git clone https://github.com/Vincentvibe3/dot-files dotfiles
-cp ./dotfiles/backup ~
+cp ./dotfiles/Arch/backup ~
 chmod +x backup
 echo
 while true; do

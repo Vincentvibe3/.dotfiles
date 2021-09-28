@@ -1,0 +1,38 @@
+echo "export public only(p) or secret(s) as well?"
+read ANSWER
+if test -e exportedkey; then
+	CHECKCOUNT=1
+	while test -e exportedkey; do
+		if test -e exportedkey$CHECKCOUNT;then
+			CHECKCOUNT=$CHECKCOUNT+1
+		else
+			mv exportedkey exportedkey$CHECKCOUNT
+		fi
+	done
+fi
+
+mkdir exportedkey
+cd exportedkey
+case $ANSWER in 
+	p)
+		gpg -o key --armor --export $1
+		KEYID=$(gpg -k $1 | grep -v 'pub\|uid\|sub' | sed 's/ //g' | tr -d '\n')
+		gpg --export-ownertrust | grep $KEYID >> trust
+		;;
+	s)
+		gpg -o key --armor --export $1
+        gpg -o secret --armor --export-secret-keys $1
+        KEYID=$(gpg -k $1 | grep -v 'pub\|uid\|sub' | sed 's/ //g' | tr -d '\n')
+		gpg --export-ownertrust | grep $KEYID >> trust
+		;;
+esac
+
+cd ../
+tar -czf exportedkey.tar.gz exportedkey
+gpg -o "exportedkey.gpg" -c exportedkey.tar.gz
+rm exportedkey.tar.gz
+rm -r exportedkey
+if test -e exportedkey$CHECKCOUNT; then
+	mv exportedkey$CHECKCOUNT exportedkey
+fi
+unset ANSWER

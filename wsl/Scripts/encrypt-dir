@@ -1,0 +1,28 @@
+OUTPUT=$(basename $1)
+tar -czvf temp.tar.gz $1
+
+echo "encrypt symmetrically(s) or asymmetrically(a)?"
+read CHOICE1
+case $CHOICE1 in
+	s)
+		gpg -o "$OUTPUT.tar.gz.gpg" -c temp.tar.gz
+		;;
+	a)
+		gpg -o "$OUTPUT.tar.gz.gpg" --encrypt temp.tar.gz
+		;;
+esac
+
+echo "Keep tar archive (y/n)?"
+
+read CHOICE2
+case $CHOICE2 in
+	y)
+		mv temp.tar.gz "$OUTPUT.tar.gz"
+		;;
+	n)
+		rm temp.tar.gz
+                ;;
+esac
+unset OUTPUT
+unset CHOICE1
+unset CHOICE2
