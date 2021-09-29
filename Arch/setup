@@ -135,12 +135,12 @@ git config --global user.email "$GIT_EMAIL"
 git config --global core.email "nvim"
 
 cd ~
-git clone https://github.com/Vincentvibe3/dot-files dotfiles
-cp ./dotfiles/Arch/backup ~
+git clone https://github.com/Vincentvibe3/dot-files .dotfiles
+cp ./.dotfiles/Arch/backup ~
 chmod +x backup
 echo
 while true; do
-    read -p "restore dotfiles?(y/n)" RESTORE
+    read -p "restore .dotfiles?(y/n)" RESTORE
     case $RESTORE in
         [Yy]* )
             read -p "What theme should be restored?" THEME

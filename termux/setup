@@ -28,8 +28,8 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" 
 git clone https://github.com/chris-marsh/pureline.git
 cp pureline/configs/powerline_full_256col.conf ~/.pureline.conf
-git clone https://github.com/Vincentvibe3/dotfiles.git ~/dotfiles 
-chmod +x ~/dotfiles/termux/backup 
-~/dotfiles/termux/backup restore
+git clone https://github.com/Vincentvibe3/.dotfiles.git ~/.dotfiles 
+chmod +x ~/.dotfiles/termux/backup 
+~/.dotfiles/termux/backup restore
 chsh -s zsh
 termux-setup-storage

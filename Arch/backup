@@ -9,21 +9,21 @@ else
     else
         case $1 in
             "backup")
-                cp ~/backup ~/dotfiles/backup
-                cp -r ~/.config/awesome ~/dotfiles/$2/
-                cp -r ~/.config/picom ~/dotfiles/$2/
-                cp -r ~/.local/share/konsole ~/dotfiles/$2/
-                cp ~/.xinitrc ~/dotfiles/$2/
-                cp ~/.zshrc ~/dotfiles/$2/
-                cp -r ~/.poshthemes/mythemes/ ~/dotfiles/$2/poshthemes/
+                cp ~/backup ~/.dotfiles/backup
+                cp -r ~/.config/awesome ~/.dotfiles/$2/
+                cp -r ~/.config/picom ~/.dotfiles/$2/
+                cp -r ~/.local/share/konsole ~/.dotfiles/$2/
+                cp ~/.xinitrc ~/.dotfiles/$2/
+                cp ~/.zshrc ~/.dotfiles/$2/
+                cp -r ~/.poshthemes/mythemes/ ~/.dotfiles/$2/poshthemes/
                 ;;
 
             "restore")
-                cp -r ~/dotfiles/$2/awesome ~/.config/
-                cp -r ~/dotfiles/$2/picom ~/.config/
-                cp -r ~/dotfiles/$2/konsole ~/.local/share 
-                cp ~/dotfiles/$2/.zshrc ~/.zshrc 
-                cp -r ~/dotfiles/$2/poshthemes/mythemes/ ~/.poshthemes
+                cp -r ~/.dotfiles/$2/awesome ~/.config/
+                cp -r ~/.dotfiles/$2/picom ~/.config/
+                cp -r ~/.dotfiles/$2/konsole ~/.local/share 
+                cp ~/.dotfiles/$2/.zshrc ~/.zshrc 
+                cp -r ~/.dotfiles/$2/poshthemes/mythemes/ ~/.poshthemes
 		while true; do
 			if [ -z $3 ]; then
 				read -p "Copy .xinit?(y/n)" ANS
@@ -41,7 +41,7 @@ else
 			fi
 			case $ANS in
 				[Yy]* )
-					cp ~/dotfiles/$2/.xinitrc ~/.xinitrc;
+					cp ~/.dotfiles/$2/.xinitrc ~/.xinitrc;
 					break
 				;;
 
@@ -50,7 +50,7 @@ else
 				;;
 	
 				"")
-					cp ~/dotfiles/$2/.xinitrc ~/.xinitrc;
+					cp ~/.dotfiles/$2/.xinitrc ~/.xinitrc;
 					break
 				;;
 
