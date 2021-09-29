@@ -5,6 +5,7 @@ else
 		"backup")
 			mkdir -p ~/.dotfiles/wsl/oh-my-zsh/
 			cp ~/backup ~/.dotfiles/wsl
+			cp -r ~/.config ~/.dotfiles/wsl
 			cp ~/.vimrc ~/.dotfiles/wsl/
 			cp ~/.zshrc ~/.dotfiles/wsl/
 			cp ~/.bashrc ~/.dotfiles/wsl/
@@ -15,6 +16,7 @@ else
 			;;
 
 		"restore")
+			cp -r ~/.dotfiles/wsl/.config ~
 			cp ~/.dotfiles/wsl/backup ~/backup
 			cp ~/.dotfiles/wsl/.vimrc ~/.vimrc 
 			cp ~/.dotfiles/wsl/.zshrc ~/.zshrc 
@@ -22,7 +24,7 @@ else
 			cp -r ~/.dotfiles/wsl/Scripts ~ 
 			cp -r ~/.dotfiles/wsl/.poshthemes ~
 			cp ~/.dotfiles/wsl/.profile ~/.profile 
-			cp -r ~/.dotfiles/oh-my-zsh/custom ~/.oh-my-zsh
+			cp -r ~/.dotfiles/wsl/oh-my-zsh/custom ~/.oh-my-zsh
 			;;
 	esac
 fi
