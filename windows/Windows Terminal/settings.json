@@ -1,13 +1,28 @@
 {
+    "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    // Add custom actions and keybindings to this array.
-    // To unbind a key combination from your defaults.json, set the command to "unbound".
-    // To learn more about actions and keybindings, visit https://aka.ms/terminal-keybindings
     "actions": 
     [
-        // Copy and paste are bound to Ctrl+Shift+C and Ctrl+Shift+V in your defaults.json.
-        // These two lines additionally bind them to Ctrl+C and Ctrl+V.
-        // To learn more about selection, visit https://aka.ms/terminal-selection
+        {
+            "command": "find",
+            "keys": "ctrl+shift+f"
+        },
+        {
+            "command": 
+            {
+                "action": "setColorScheme",
+                "colorScheme": "Berry Light"
+            },
+            "keys": "ctrl+alt+l"
+        },
+        {
+            "command": "paste",
+            "keys": "ctrl+v"
+        },
+        {
+            "command": "tabSearch",
+            "keys": "ctrl+tab"
+        },
         {
             "command": 
             {
@@ -16,19 +31,6 @@
             },
             "keys": "ctrl+c"
         },
-        {
-            "command": "paste",
-            "keys": "ctrl+v"
-        },
-        // Press Ctrl+Shift+F to open the search box
-        {
-            "command": "find",
-            "keys": "ctrl+shift+f"
-        },
-        // Press Alt+Shift+D to open a new pane.
-        // - "split": "auto" makes this pane open in the direction that provides the most surface area.
-        // - "splitMode": "duplicate" makes the new pane use the focused pane's profile.
-        // To learn more about panes, visit https://aka.ms/terminal-panes
         {
             "command": 
             {
@@ -45,34 +47,37 @@
                 "colorScheme": "Berry Dark"
             },
             "keys": "ctrl+alt+d"
-        },
-        {
-            "command": 
-            {
-                "action": "setColorScheme",
-                "colorScheme": "Berry Light"
-            },
-            "keys": "ctrl+alt+l"
-        },
-        {
-            "command": "tabSearch",
-            "keys": "ctrl+tab"
         }
     ],
     "confirmCloseAllTabs": false,
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+    "newTabMenu": 
+    [
+        {
+            "type": "remainingProfiles"
+        }
+    ],
     "profiles": 
     {
         "defaults": 
         {
-            "acrylicOpacity": 0.69999999999999996,
-            "colorScheme": "Berry Light",
+            "backgroundImage": null,
+            "backgroundImageOpacity": 0.2,
+            "colorScheme": "Seiun Deepspace",
             "cursorShape": "bar",
-            "fontFace": "Cascadia Code PL",
-            "fontSize": 10,
-            "fontWeight": "normal",
+            "experimental.retroTerminalEffect": false,
+            "font": 
+            {
+                "face": "CaskaydiaCove NF",
+                "size": 10.0,
+                "weight": "normal"
+            },
+            "intenseTextStyle": "bright",
+            "opacity": 90,
+            "padding": "15, 15, 15, 8",
+            "scrollbarState": "visible",
             "useAcrylic": true
         },
         "list": 
@@ -90,13 +95,45 @@
                 "icon": "C:\\Users\\Vincent\\Documents\\Programming\\Windows Terminal\\Ubuntu_logo.png",
                 "name": "Ubuntu",
                 "source": "Windows.Terminal.Wsl",
-                "startingDirectory": "//wsl$/Ubuntu/home/vinvin"
+                "startingDirectory": "\\\\wsl$\\Ubuntu\\home\\vincent"
+            },
+            {
+                "guid": "{aa8efdb5-3cbe-50b2-a332-9203dc1ee217}",
+                "hidden": false,
+                "icon": "G:\\Users\\Vincent\\Documents\\Programming\\Windows Terminal\\fedora_logo.png",
+                "name": "Fedora",
+                "source": "Windows.Terminal.Wsl"
+            },
+            {
+                "guid": "{1777cdf0-b2c4-5a63-a204-eb60f349ea7c}",
+                "hidden": false,
+                "icon": "G:\\Users\\Vincent\\Documents\\Programming\\Windows Terminal\\alpine_logo.png",
+                "name": "Alpine",
+                "source": "Windows.Terminal.Wsl"
+            },
+            {
+                "commandline": "powershell.exe -Executionpolicy remotesigned -noprofile -noexit -File C:\\Users\\Vincent\\Documents\\WindowsPowerShell\\Dev_Profile.ps1",
+                "guid": "{638f392f-3b25-47f0-bea3-a3abb7f98405}",
+                "historySize": 9001,
+                "icon": "C:\\Users\\Vincent\\Documents\\Programming\\Windows Terminal\\VS_2022+Powershell.png",
+                "name": "Developer PowerShell for VS 2022",
+                "snapOnInput": true,
+                "startingDirectory": "%USERPROFILE%"
+            },
+            {
+                "guid": "{a6276699-5b8f-5f76-88eb-128414202786}",
+                "hidden": true,
+                "icon": "C:\\Users\\Vincent\\Documents\\Programming\\Windows Terminal\\VS_2022+Cmd.png",
+                "name": "Developer Command Prompt for VS 2022",
+                "source": "Windows.Terminal.VisualStudio",
+                "startingDirectory": "%USERPROFILE%"
             },
             {
                 "commandline": "\"%PROGRAMFILES%\\git\\bin\\bash.exe\" --login -i -l",
                 "guid": "{00000000-0000-0000-0000-000000012345}",
                 "icon": "%PROGRAMFILES%\\git\\mingw64\\share\\git\\git-for-windows.ico",
-                "name": "Git Bash"
+                "name": "Git Bash",
+                "startingDirectory": "%USERPROFILE%"
             },
             {
                 "commandline": "C:\\Program Files\\PostgreSQL\\13\\scripts\\runpsql.bat",
@@ -105,12 +142,6 @@
                 "name": "PostgreSQL"
             },
             {
-                "commandline": "C:\\Program Files\\MongoDB\\Server\\4.4\\bin\\mongo.exe",
-                "icon": "C:\\Users\\Vincent\\Documents\\Programming\\Windows Terminal\\MongoDB.png",
-                "name": "Mongo Shell"
-            },
-            {
-                "commandline": "cmd.exe",
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "hidden": false,
                 "name": "Command Prompt"
@@ -218,29 +249,6 @@
             "yellow": "#C19C00"
         },
         {
-            "background": "#161616",
-            "black": "#272727",
-            "blue": "#0083B3",
-            "brightBlack": "#303030",
-            "brightBlue": "#26C5FF",
-            "brightCyan": "#22CFB2",
-            "brightGreen": "#17E183",
-            "brightPurple": "#FF268B",
-            "brightRed": "#FF2525",
-            "brightWhite": "#FAFAFA",
-            "brightYellow": "#FF8215",
-            "cursorColor": "#FAFAFA",
-            "cyan": "#1BA58E",
-            "foreground": "#FAFAFA",
-            "green": "#15B76B",
-            "name": "Dark",
-            "purple": "#E9006D",
-            "red": "#E90000",
-            "selectionBackground": "#FFFFFF",
-            "white": "#EDEDED",
-            "yellow": "#DC6700"
-        },
-        {
             "background": "#282A36",
             "black": "#21222C",
             "blue": "#BD93F9",
@@ -262,29 +270,6 @@
             "selectionBackground": "#44475A",
             "white": "#F8F8F2",
             "yellow": "#F1FA8C"
-        },
-        {
-            "background": "#F0F0F0",
-            "black": "#161616",
-            "blue": "#0083B3",
-            "brightBlack": "#303030",
-            "brightBlue": "#26C5FF",
-            "brightCyan": "#22CFB2",
-            "brightGreen": "#0DF287",
-            "brightPurple": "#FF268B",
-            "brightRed": "#FF2525",
-            "brightWhite": "#FFFFFF",
-            "brightYellow": "#FF8215",
-            "cursorColor": "#161616",
-            "cyan": "#1BA58E",
-            "foreground": "#161616",
-            "green": "#15B76B",
-            "name": "Light",
-            "purple": "#E9006D",
-            "red": "#E90000",
-            "selectionBackground": "#FFFFFF",
-            "white": "#EAEAEA",
-            "yellow": "#DC6700"
         },
         {
             "background": "#282C34",
@@ -354,6 +339,29 @@
             "selectionBackground": "#FFFFFF",
             "white": "#00FF00",
             "yellow": "#00FF00"
+        },
+        {
+            "background": "#0E0F15",
+            "black": "#303030",
+            "blue": "#839FE7",
+            "brightBlack": "#303030",
+            "brightBlue": "#839FE7",
+            "brightCyan": "#95E3F4",
+            "brightGreen": "#B3ECDB",
+            "brightPurple": "#D8BFEC",
+            "brightRed": "#E7598C",
+            "brightWhite": "#E4E4E4",
+            "brightYellow": "#F5BF97",
+            "cursorColor": "#CBDBEB",
+            "cyan": "#95E3F4",
+            "foreground": "#CBDBEB",
+            "green": "#B3ECDB",
+            "name": "Seiun Deepspace",
+            "purple": "#D8BFEC",
+            "red": "#E7598C",
+            "selectionBackground": "#6F767E",
+            "white": "#E4E4E4",
+            "yellow": "#F5BF97"
         },
         {
             "background": "#002B36",
@@ -469,7 +477,99 @@
             "selectionBackground": "#FFFFFF",
             "white": "#C0C0C0",
             "yellow": "#808000"
+        },
+        {
+            "background": "#0E0F15",
+            "black": "#3F414B",
+            "blue": "#798AC4",
+            "brightBlack": "#3F414B",
+            "brightBlue": "#5A6FB4",
+            "brightCyan": "#BB345D",
+            "brightGreen": "#BE8BC3",
+            "brightPurple": "#986A9D",
+            "brightRed": "#DF7897",
+            "brightWhite": "#F6F8FF",
+            "brightYellow": "#F0BBA4",
+            "cursorColor": "#BDBFC7",
+            "cyan": "#D74B75",
+            "foreground": "#BDBFC7",
+            "green": "#D3A1D9",
+            "name": "nonsemver",
+            "purple": "#AC79B1",
+            "red": "#EAACBF",
+            "selectionBackground": "#A3A6AE",
+            "white": "#F6F8FF",
+            "yellow": "#F1D8CD"
+        },
+        {
+            "background": "#E4E9F0",
+            "black": "#494C61",
+            "blue": "#6881C1",
+            "brightBlack": "#494C61",
+            "brightBlue": "#6881C1",
+            "brightCyan": "#75BBCA",
+            "brightGreen": "#669E90",
+            "brightPurple": "#826C95",
+            "brightRed": "#C14771",
+            "brightWhite": "#FFFFFF",
+            "brightYellow": "#E3A675",
+            "cursorColor": "#13151F",
+            "cyan": "#75BBCA",
+            "foreground": "#13151F",
+            "green": "#669E90",
+            "name": "semver-Light",
+            "purple": "#826C95",
+            "red": "#C14771",
+            "selectionBackground": "#73757E",
+            "white": "#FFFFFF",
+            "yellow": "#E3A675"
         }
     ],
-    "theme": "system"
+    "theme": "system",
+    "themes": 
+    [
+        {
+            "name": "legacyDark",
+            "tab": 
+            {
+                "background": null,
+                "showCloseButton": "always",
+                "unfocusedBackground": null
+            },
+            "window": 
+            {
+                "applicationTheme": "dark",
+                "useMica": false
+            }
+        },
+        {
+            "name": "legacyLight",
+            "tab": 
+            {
+                "background": null,
+                "showCloseButton": "always",
+                "unfocusedBackground": null
+            },
+            "window": 
+            {
+                "applicationTheme": "light",
+                "useMica": false
+            }
+        },
+        {
+            "name": "legacySystem",
+            "tab": 
+            {
+                "background": null,
+                "showCloseButton": "always",
+                "unfocusedBackground": null
+            },
+            "window": 
+            {
+                "applicationTheme": "system",
+                "useMica": false
+            }
+        }
+    ],
+    "useAcrylicInTabRow": true
 }
