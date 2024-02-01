@@ -3,26 +3,26 @@ if [ -z "$1" ]; then
 else
 	case $1 in
 		"backup")
-			mkdir -p ~/dotfiles/termux/bin
-			cp -r ~/bin/* ~/dotfiles/termux/bin
-			cp -r ~/.config ~/dotfiles/termux/
-			cp ~/.zshrc ~/dotfiles/termux/
-			cp ~/.vimrc ~/dotfiles/termux/
-			cp -r ~/.termux ~/dotfiles/termux/
-			cp ~/.bashrc ~/dotfiles/termux/
-			cp ~/backup ~/dotfiles/termux/
-			cp -r ~/.oh-my-zsh/themes ~/dotfiles/termux/oh-my-zsh
+			mkdir -p ~/.dotfiles/termux/bin
+			cp -r ~/bin/* ~/.dotfiles/termux/bin
+			cp -r ~/.config ~/.dotfiles/termux/
+			cp ~/.zshrc ~/.dotfiles/termux/
+			cp ~/.vimrc ~/.dotfiles/termux/
+			cp -r ~/.termux ~/.dotfiles/termux/
+			cp ~/.bashrc ~/.dotfiles/termux/
+			cp ~/backup ~/.dotfiles/termux/
+			cp -r ~/.oh-my-zsh/themes ~/.dotfiles/termux/oh-my-zsh
 			;;
 
 		"restore")
-			cp -r ~/dotfiles/termux/bin ~
-			cp -r ~/dotfiles/termux/.config ~
-			cp ~/dotfiles/termux/.zshrc ~/.zshrc
-			cp ~/dotfiles/termux/.vimrc ~/.vimrc
-			cp ~/dotfiles/termux/.bashrc ~/.bashrc
-			cp -r ~/dotfiles/.oh-my-zsh ~/.ohmyzsh/
-			cp -r ~/dotfiles/termux/.termux ~
-			cp ~/dotfiles/termux/backup ~/backup
+			cp -r ~/.dotfiles/termux/bin ~
+			cp -r ~/.dotfiles/termux/.config ~
+			cp ~/.dotfiles/termux/.zshrc ~/.zshrc
+			cp ~/.dotfiles/termux/.vimrc ~/.vimrc
+			cp ~/.dotfiles/termux/.bashrc ~/.bashrc
+			cp -r ~/.dotfiles/termux/oh-my-zsh ~/.ohmyzsh/themes
+			cp -r ~/.dotfiles/termux/.termux ~
+			cp ~/.dotfiles/termux/backup ~/backup
 			;;
 	esac
 fi
