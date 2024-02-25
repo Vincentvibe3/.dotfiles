@@ -18,11 +18,11 @@ case $CHOICE in
 
 	b)
 		youtube-dl $1
-                FILE=$(youtube-dl --get-filename $1)
+        FILE=$(youtube-dl --get-filename $1)
 		cd ~/youtube
 		OUTPUT=$(basename "$FILE" .mp4)
-                ffmpeg -i "$FILE" "${OUTPUT}.mp3"
-                mv "${OUTPUT}.mp3" ~/Music
+        ffmpeg -i "$FILE" "${OUTPUT}.mp3"
+        mv "${OUTPUT}.mp3" ~/Music
 		;;
 
 esac

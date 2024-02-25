@@ -100,7 +100,7 @@ powermenu = {
 
 mymainmenu = awful.menu({ items = { { "Awesome", myawesomemenu, beautiful.awesome_icon },
 				    { "Power", powermenu },
-                                    { "Open terminal", terminal }
+                                    { "Open terminal", terminal },
                                   }
                         })
 

@@ -10,6 +10,15 @@
         {
             "command": 
             {
+                "action": "splitPane",
+                "split": "auto",
+                "splitMode": "duplicate"
+            },
+            "keys": "alt+shift+d"
+        },
+        {
+            "command": 
+            {
                 "action": "setColorScheme",
                 "colorScheme": "Berry Light"
             },
@@ -30,15 +39,6 @@
                 "singleLine": false
             },
             "keys": "ctrl+c"
-        },
-        {
-            "command": 
-            {
-                "action": "splitPane",
-                "split": "auto",
-                "splitMode": "duplicate"
-            },
-            "keys": "alt+shift+d"
         },
         {
             "command": 
@@ -129,6 +129,18 @@
                 "startingDirectory": "%USERPROFILE%"
             },
             {
+                "guid": "{5545f0f4-044b-57fe-a842-f603c7bde5de}",
+                "hidden": true,
+                "name": "Pico - Developer Command Prompt (SDK v1.5.1)",
+                "source": "Raspberry Pi Pico SDK v1.5.1"
+            },
+            {
+                "guid": "{4b944f04-959b-56e6-93cd-3de583e48d92}",
+                "hidden": false,
+                "name": "Pico - Developer PowerShell (SDK v1.5.1)",
+                "source": "Raspberry Pi Pico SDK v1.5.1"
+            },
+            {
                 "commandline": "\"%PROGRAMFILES%\\git\\bin\\bash.exe\" --login -i -l",
                 "guid": "{00000000-0000-0000-0000-000000012345}",
                 "icon": "%PROGRAMFILES%\\git\\mingw64\\share\\git\\git-for-windows.ico",
@@ -136,7 +148,8 @@
                 "startingDirectory": "%USERPROFILE%"
             },
             {
-                "commandline": "C:\\Program Files\\PostgreSQL\\13\\scripts\\runpsql.bat",
+                "commandline": "C:\\Program Files\\PostgreSQL\\16\\scripts\\runpsql.bat",
+                "hidden": true,
                 "guid": "{00000000-0000-0000-0000-000000012346}",
                 "icon": "C:\\Users\\Vincent\\Documents\\Programming\\Windows Terminal\\elephant.png",
                 "name": "PostgreSQL"
@@ -526,50 +539,6 @@
         }
     ],
     "theme": "system",
-    "themes": 
-    [
-        {
-            "name": "legacyDark",
-            "tab": 
-            {
-                "background": null,
-                "showCloseButton": "always",
-                "unfocusedBackground": null
-            },
-            "window": 
-            {
-                "applicationTheme": "dark",
-                "useMica": false
-            }
-        },
-        {
-            "name": "legacyLight",
-            "tab": 
-            {
-                "background": null,
-                "showCloseButton": "always",
-                "unfocusedBackground": null
-            },
-            "window": 
-            {
-                "applicationTheme": "light",
-                "useMica": false
-            }
-        },
-        {
-            "name": "legacySystem",
-            "tab": 
-            {
-                "background": null,
-                "showCloseButton": "always",
-                "unfocusedBackground": null
-            },
-            "window": 
-            {
-                "applicationTheme": "system",
-                "useMica": false
-            }
-        }
-    ],
+    "themes": [],
     "useAcrylicInTabRow": true
 }
